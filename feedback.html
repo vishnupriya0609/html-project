@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f0f8ff;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #enlargeImg {
+      width: 100%;
+      max-width: 300px;
+      transition: transform 0.3s;
+      border: 2px solid #ccc;
+      margin-top: 20px;
+    }
+
+    #charCount {
+      font-size: 14px;
+      color: gray;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="feedbackForm">
+    <h2>Event Feedback</h2>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" placeholder="Enter 10-digit number" onblur="validatePhone()" />
+
+    <label for="eventSelect">Select Event:</label>
+    <select id="eventSelect" onchange="showFee()">
+      <option value="" disabled selected>Choose event</option>
+      <option value="100">Cultural Dance</option>
+      <option value="150">Tech Expo</option>
+      <option value="50">Food Festival</option>
+    </select>
+    <p id="feeDisplay">Fee: ₹0</p>
+
+    <label for="feedback">Your Feedback:</label>
+    <textarea id="feedback" rows="4" onkeydown="countCharacters()"></textarea>
+    <p id="charCount">Characters: 0</p>
+
+    <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+  </form>
+
+  <img src="event1.jpeg" id="cultural event" ondblclick="enlargeImage()" title="Double-click to enlarge">
+<img src="event2.jpeg" id="tech expo" ondblclick="enlargeImage()" title="Double-click to enlarge">
+<img src="event3.jpeg" id="food festival" ondblclick="enlargeImage()" title="Double-click to enlarge">
+<img src="event4.jpeg" id="art show" ondblclick="enlargeImage()" title="Double-click to enlarge">
+<img src="event5.jpeg" id="sports day" ondblclick="enlargeImage()" title="Double-click to enlarge">
+<img src="event6.jpeg" id="music night" ondblclick="enlargeImage()" title="Double-click to enlarge">
+  <script>
+    function validatePhone() {
+      const phone = document.getElementById("phone").value;
+      if (!/^\d{10}$/.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+      }
+    }
+
+    function showFee() {
+      const fee = document.getElementById("eventSelect").value;
+      document.getElementById("feeDisplay").textContent = `Fee: ₹${fee}`;
+    }
+
+    function submitFeedback() {
+      alert("Thank you for your feedback!");
+    }
+
+    function enlargeImage() {
+      const img = document.getElementById("enlargeImg");
+      img.style.transform = img.style.transform === "scale(1.5)" ? "scale(1)" : "scale(1.5)";
+    }
+
+    function countCharacters() {
+      const count = document.getElementById("feedback").value.length;
+      document.getElementById("charCount").textContent = `Characters: ${count}`;
+    }
+  </script>
+
+</body>
+</html>
